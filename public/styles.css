@@ -1,0 +1,18 @@
+body {
+    display: grid;
+    background-color: #A1BC98;
+    place-items: center;
+    height: 100vh;
+}
+
+div {
+    background-color: #778873;
+    text-align: center;
+    margin: 1em;
+    padding: 1em;
+    width: 50%;
+}
+
+#Filter {
+    text-align: center;
+}

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="MainSubmission">
+    <% if( locals.cryptoList && locals.currencyList ){ %>
+    <form action="/" method="POST">
+        <select name="crypto">
+            <% cryptoList.forEach((crypto) => { %>
+                <option value="<%= crypto.id %>"><%= crypto.name %></option>
+            <% }); %>
+        </select>
+        <select name="currency">
+            <option value="USD">USD</option>
+            <% currencyList.forEach((currency) => { %>
+                <option value="<%= currency %>"><%= currency %></option>
+            <% }); %>
+        </select>
+        <input type="submit" value="Get Price">
+    </form>
+    <% }else{ %>
+        <p>Error: Server Could Not Get List of Currencies/Cryptocurrencies</p>
+    <% } %>
+    </div>
+    <div id="Filter">
+    <form action="/filter" method="POST">
+        <table>
+            <tr>
+                <td><label for="marketCapMin">Market Cap Minimum</label></td>
+                <td><label for="marketCapMax">Market Cap Maximum</label></td>
+                <td><label for="totalSupplyMin">Total Supply Minimum</label></td>
+                <td><label for="totalSupplyMax">Total Supply Maximum</label></td>   
+            </tr>
+            <tr>
+                <td><input type="text" name="marketCapMin"></td>
+                <td><input type="text" name="marketCapMax"></td>
+                <td><input type="text" name="totalSupplyMin"></td>
+                <td><input type="text" name="totalSupplyMax"></td>
+            </tr>
+            <tr>
+                <td colspan="4" ><input type="submit" value="Filter"></td>
+            </tr>
+        </table>
+    </form>
+    </div>
+    <div id="Result">
+    <% if( locals.price && locals.currentCurrency && locals.currentCrypto ){ %>
+        <p>1 <%= currentCrypto %> = <%= price %> <%= currentCurrency %></p>
+    <% }else{ %>
+        <p>Error: Could Not Calculate Conversion. Try Calculating Again.</p>
+    <% } %>
+    </div>
+</body>
+</html>
