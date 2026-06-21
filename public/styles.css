@@ -15,4 +15,6 @@ div {
 
 #Filter {
     text-align: center;
+    display: grid;
+    place-items: center;
 }
